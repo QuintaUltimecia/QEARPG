@@ -6707,22 +6707,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 8479549494945012600, guid: dbf5e216acfbfa4468562e8c7a17cb9b,
+      objectReference: {fileID: 7033663635467597644, guid: f1df61510be1fbb4fb242cec56a72ffb,
         type: 3}
     - target: {fileID: 3940649861709725873, guid: f3d3549d2621d7844bd6d77343f835cf,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3940649861709725873, guid: f3d3549d2621d7844bd6d77343f835cf,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3940649861709725873, guid: f3d3549d2621d7844bd6d77343f835cf,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3940649861709725873, guid: f3d3549d2621d7844bd6d77343f835cf,
         type: 3}
