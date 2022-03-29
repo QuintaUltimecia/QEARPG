@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Ground
+  - Slot
+  - ItemSprite
+  - Armor
+  - rightHand
+  - leftHand
+  - head
+  - Shoes
+  - shield
+  - pants
+  - gloves
+  - activeSlotSkill
+  - activeSlotSkillOnHud
+  - damageTargetEnemy
+  - damageTargetPlayer
+  - GiveItemSlot
+  - Inventory
+  - GiveItem
+  - Panel
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemy
+  - Player
+  - DLPlayer
+  - Post Process
+  - Terrain
+  - Item
+  - Edge
+  - MiniMapMarker
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
