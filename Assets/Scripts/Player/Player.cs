@@ -10,16 +10,15 @@ public class Player : Character
     [SerializeField] private int activeSkillPoints;
 
     [Header("Links")]
-    [SerializeField] private GameObject _targetAttack;
+    [SerializeField] private GameObject _attackPoint;
     [SerializeField] private LayerMask _layerMask;
-
-    public Enemy enemy;
 
     private int _expMax;
 
     [SerializeField] private UnityEvent _attackOn;
+    [SerializeField] private float _attackRange;
 
-    public void Start()
+    public void OnEnable()
     {
         Initialization("Player", CharacterClass.Warrior);
     }
@@ -38,7 +37,14 @@ public class Player : Character
     public void Attack()
     {
         _attackOn.Invoke();
-        if (enemy != null)
-            enemy.GetComponent<IGetDamage>().GetDamage(Damage);
+
+        Collider[] targetColliders = Physics.OverlapSphere(_attackPoint.transform.position, _attackRange, _layerMask);
+
+        foreach (var collider in targetColliders)
+        {
+            collider.GetComponent<IGetDamage>().GetDamage(Damage);
+        }
     }
+
+    private void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(_attackPoint.transform.position, _attackRange);
 }

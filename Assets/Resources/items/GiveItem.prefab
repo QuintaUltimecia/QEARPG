@@ -3092,8 +3092,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8260333078866682037}
-  - component: {fileID: 8260333078866682038}
   - component: {fileID: 8260333078866682039}
+  - component: {fileID: 6966118994680531452}
   m_Layer: 13
   m_Name: GiveItem
   m_TagString: Untagged
@@ -3118,19 +3118,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8260333078866682038
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8260333078866681992}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5111848, y: 0.7309145, z: 0.52213264}
-  m_Center: {x: 0.0011695623, y: 0.3288371, z: -0.0048029274}
 --- !u!114 &8260333078866682039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3144,6 +3131,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1149456276115151769}
+  _distanceToActiveCanvas: 0
+--- !u!65 &6966118994680531452
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260333078866681992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8294462277741369182
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class CharacterFeatures : MonoBehaviour
     public float MaxMana { get => _maxMana; internal set => _maxMana = value; }
 }
 
-public class Character : CharacterFeatures, IGetDamage
+public abstract class Character : CharacterFeatures, IGetDamage, IGiveFeaturesInUI
 {
     public void Initialization(string i_name, CharacterClass i_class)
     {
@@ -124,4 +124,6 @@ public class Character : CharacterFeatures, IGetDamage
         Health -= Mathf.Abs(damage);
         if (Health == 0) IsDeath = true;
     }
+
+    public Character ReturnCharacter() { return this; }
 }
