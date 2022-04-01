@@ -60,9 +60,9 @@ public class PlayerController : MonoBehaviour
 
     private void AddCameras()
     {
-        _camera = Instantiate(Resources.Load<GameObject>("Player/Cameras")).transform.GetChild(0).transform.GetComponent<CinemachineVirtualCamera>();
+        _camera = Instantiate(_camera);
         _camera.Follow = transform;
-        _miniMapCamera = _camera.transform.parent.GetChild(1).GetComponent<CinemachineVirtualCamera>();
+        _miniMapCamera = Instantiate(_miniMapCamera);
         _miniMapCamera.Follow = transform;
     }
 }
