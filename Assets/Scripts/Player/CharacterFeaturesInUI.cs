@@ -12,12 +12,13 @@ public class CharacterFeaturesInUI : MonoBehaviour
 
     private void Awake()
     {
-        _character = GetComponent<Character>();
+        _character = GetComponent<IGiveFeaturesInUI>().ReturnCharacter();
     }
 
     private void Start()
     {
         GetCharacterFeaturesUI();
+        Debug.Log($"{_character} : {_character.Health}");
     }
 
     public void GetCharacterFeaturesUI()
@@ -26,9 +27,9 @@ public class CharacterFeaturesInUI : MonoBehaviour
         {
             _nameText.text = _character.Name;
 
-            _healthSlider.value = _character.Health;
             _healthSlider.minValue = _character.minValue;
             _healthSlider.maxValue = _character.MaxHealth;
+            _healthSlider.value = _character.Health;
 
             _healthBar.text = $"{_character.Health}/{_character.MaxHealth}";
         }

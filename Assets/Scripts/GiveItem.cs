@@ -1,39 +1,35 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class GiveItem : MonoBehaviour, ITargetPosition
+public class GiveItem : MonoBehaviour
 {
-    [SerializeField] GameObject _canvas;
-    private GameObject[] giveItemSlot = new GameObject[29];
-    [SerializeField] private float _distanceToActiveCanvas;
+    [SerializeField] private GameObject _button;
+    [SerializeField] private GameObject _lootWindow;
 
-    private void Start()
-    {
-        
-    }
+    private GameObject[] _lootSlot = new GameObject[29];
+    private Player _player;
 
-    public void Interaction(CharacterController characterController = null)
+    public void Interaction()
     {
         int randomItemCount = Random.Range(1, 28);
 
         for (int i = 0; i < randomItemCount; i++)
         {
-            giveItemSlot[i] = _canvas.transform.Find("ScrollView").transform.Find("LayoutGroup").transform.Find($"Image ({i})").gameObject;
-            GameObject sp = Instantiate(Resources.Load<GameObject>($"inventorySprite/inventorySprite"), giveItemSlot[i].transform);
-            sp.GetComponent<SpriteOperation>().inventoryPlayer = characterController.GetComponent<InventoryPlayer>();
+            _lootSlot[i] = _lootWindow.transform.Find("ScrollView").transform.Find("LayoutGroup").transform.Find($"Image ({i})").gameObject;
+            GameObject sp = Instantiate(Resources.Load<GameObject>($"inventorySprite/inventorySprite"), _lootSlot[i].transform);
+            sp.GetComponent<SpriteOperation>().inventoryPlayer = _player.GetComponent<InventoryPlayer>();
         }
 
-        if (characterController != null)
-        {
-            StartCoroutine(CanvasActive(characterController));
-            Vector3 targetWalkPosition = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
-            characterController.SetTargetWalk(characterController.TargetMove.activeSelf, transform, targetWalkPosition);
-        } 
+        _lootWindow.SetActive(true);
     }
 
-    private IEnumerator CanvasActive(CharacterController characterController)
+    public void OnTriggerEnter(Collider other)
     {
-        while (Vector3.Distance(transform.position, characterController.transform.position) > _distanceToActiveCanvas) { yield return null; }
-        _canvas.SetActive(true);
+        if (other.TryGetComponent<Player>(out Player player))
+        {
+            _player = player;
+            _button.SetActive(true);
+        }
     }
+
+    public void OnTriggerExit(Collider other) { if (other.GetComponent<Player>()) _button.SetActive(false); }
 }
