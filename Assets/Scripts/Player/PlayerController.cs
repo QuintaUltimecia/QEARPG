@@ -15,15 +15,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UnityEvent _moveOn;
     [SerializeField] private UnityEvent _moveOff;
 
+    private Rigidbody _rigidbody;
+
     private void Awake()
     {
+        _rigidbody = GetComponent<Rigidbody>();
+
         AddCameras();
 
         _moveOn.AddListener(MoveOn);
         _moveOff.AddListener(MoveOff);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
     }
@@ -43,11 +47,8 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        Vector3 direction = _joyStick.Position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = rotation;
-
-        transform.Translate(Vector3.forward * _moveSpeed * Time.deltaTime);
+        _rigidbody.MoveRotation(Quaternion.LookRotation(_joyStick.Position));
+        _rigidbody.MovePosition(transform.position + (_joyStick.Position * _moveSpeed * Time.deltaTime));
     }
 
     private void MoveOn()
