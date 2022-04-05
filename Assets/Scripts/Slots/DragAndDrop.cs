@@ -14,7 +14,7 @@ public class DragAndDrop : MonoBehaviour, IEndDragHandler, IDragHandler, IBeginD
 
     private void Start()
     {
-        _canvasRect = GameObject.Find("PlayerCanvas").GetComponent<RectTransform>();
+        _canvasRect = GameCache.Canvas.GetComponent<RectTransform>();
         _raycaster = _canvasRect.GetComponent<GraphicRaycaster>();
         _eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
     }

@@ -21,6 +21,16 @@ public class JoyStick : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        GetTouch();
+
+        Vector2 offset = _inputPosition - _borderStick.transform.position;
+        _analogStick.transform.position = (Vector2)_borderStick.transform.position + Vector2.ClampMagnitude(offset, _maxRadius);
+    }
+
+    public void OnEndDrag(PointerEventData eventData) => _analogStick.transform.localPosition = Vector3.zero;
+
+    private void GetTouch()
+    {
         if (Application.platform == RuntimePlatform.Android)
         {
             for (int i = 0; i < Input.touchCount; ++i)
@@ -31,33 +41,6 @@ public class JoyStick : MonoBehaviour, IDragHandler, IEndDragHandler
         }
         else
             _inputPosition = Input.mousePosition;
-
-        Vector3 offset = _inputPosition - _borderStick.transform.position;
-
-        offset = new Vector3(offset.x, offset.y, 0);
-
-        _analogStick.transform.position = _borderStick.transform.position + Vector3.ClampMagnitude(offset, _maxRadius);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        _analogStick.transform.localPosition = Vector3.zero;
-    }
-
-    public Vector3 Position
-    {
-        get
-        {
-            return PositionConvertor().normalized;
-        }
-    }
-
-    public Vector3 Rotation
-    {
-        get
-        {
-            return RotationConvertor().normalized;
-        }
     }
 
     private Vector3 PositionConvertor(Vector3 newPosition = new Vector3())
@@ -75,4 +58,7 @@ public class JoyStick : MonoBehaviour, IDragHandler, IEndDragHandler
 
         return newPosition;
     }
+
+    public Vector3 Position { get => PositionConvertor().normalized; }
+    public Vector3 Rotation { get => RotationConvertor().normalized; }
 }

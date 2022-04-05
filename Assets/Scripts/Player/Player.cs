@@ -18,9 +18,18 @@ public class Player : Character
     [SerializeField] private UnityEvent _attackOn;
     [SerializeField] private float _attackRange;
 
+    private GameObject _slots;
+    private GameObject[] _inventorySlot = new GameObject[28];
+
     public void OnEnable()
     {
         Initialization("Player", CharacterClass.Warrior);
+    }
+    private void Awake()
+    {
+        _slots = GetComponent<CharacterFeaturesInUI>().GetCharacterPanelComponent.Slots;
+        for (int i = 0; i < _inventorySlot.Length; i++) 
+            _inventorySlot[i] = _slots.transform.GetChild(i).gameObject;
     }
 
     public void GetExp(int value)
