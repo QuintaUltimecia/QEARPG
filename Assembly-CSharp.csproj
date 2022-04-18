@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.15</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2020.3.27f1</UnityVersion>
@@ -58,72 +58,75 @@
   <ItemGroup>
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterFeaturesInUI.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\CharacterFeaturesInUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
-    <Compile Include="Assets\Scripts\Slots\SlotSkill.cs" />
-    <Compile Include="Assets\Scripts\Character\Character.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Slots\SlotSkill.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Character\Character.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IGiveFeaturesInUI.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Interfaces\IGiveFeaturesInUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
-    <Compile Include="Assets\Scripts\Slots\ActiveSlotSkillOnHud.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Loot\Item.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Slots\ActiveSlotSkillOnHud.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterController.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\CharacterController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IAttack.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Interfaces\IAttack.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\SmallScripts\Garbage.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\SmallScripts\Garbage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Skills\DefaultAttack.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
-    <Compile Include="Assets\Scripts\Controller\JoyStick.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Controller\JoyStick.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
-    <Compile Include="Assets\Scripts\Slots\Slot.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Slots\Slot.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\Player\Player.cs" />
-    <Compile Include="Assets\Scripts\Slots\DragAndDrop.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Slots\DragAndDrop.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\GameCache.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Loot\ItemCache.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
-    <Compile Include="Assets\Scripts\Loot\Loot.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Loot\Loot.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
-    <Compile Include="Assets\Scripts\InventoryPlayer.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\InventoryPlayer.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Loot\LootPanel.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\VisualizeJoint.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\SmallScripts\AnimRig.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\VisualizeJoint.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\SmallScripts\AnimRig.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Skills\FireBallAttack.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\rightHandScript.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\rightHandScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyCombatSystem.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Enemy\EnemyCombatSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterPanelComponents.cs" />
-    <Compile Include="Assets\Scripts\skinnedMeshRendererArmor.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\CharacterPanelComponents.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\skinnedMeshRendererArmor.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IGetDamage.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterAnimatorController.cs" />
-    <Compile Include="Assets\Scripts\SkillsManagement.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITargetPosition.cs" />
-    <Compile Include="Assets\Scripts\SpriteOperation.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Interfaces\IGetDamage.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\TransferPlayerComponents.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\CharacterAnimatorController.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Skills\Skill.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Interfaces\ITargetPosition.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\SpriteOperation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterCreation.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\Player\CharacterCreation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\SmallScripts\playerFaceCamera.cs" />
-    <Compile Include="Assets\Scripts\SmallScripts\LeftHandRotation.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\SmallScripts\playerFaceCamera.cs" />
+    <Compile Include="Assets\RPGResources\Scripts\SmallScripts\LeftHandRotation.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\GameCache.cs" />
-    <Compile Include="Assets\Scripts\Loot\LootPanel.cs" />
-    <Compile Include="Assets\Scripts\Loot\Item.cs" />
-    <Compile Include="Assets\Scripts\Loot\ItemCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -752,9 +755,6 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
@@ -787,9 +787,6 @@
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
       <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>

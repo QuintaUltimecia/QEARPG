@@ -2257,10 +2257,10 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 0
-  m_BlendUpdateMethod: 0
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 0
+    m_Style: 1
     m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
@@ -2298,8 +2298,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -4479,7 +4479,7 @@ PrefabInstance:
     - target: {fileID: 4654284576231115575, guid: 03018aa58da808b41959a8cf3b263a71,
         type: 3}
       propertyPath: _rotationSpeed
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4654284576231115575, guid: 03018aa58da808b41959a8cf3b263a71,
         type: 3}
@@ -4664,7 +4664,7 @@ PrefabInstance:
     - target: {fileID: 5511725004419982672, guid: 03018aa58da808b41959a8cf3b263a71,
         type: 3}
       propertyPath: m_Name
-      value: AttackPoint
+      value: Attack Point
       objectReference: {fileID: 0}
     - target: {fileID: 5513468426585716085, guid: 03018aa58da808b41959a8cf3b263a71,
         type: 3}
@@ -5076,6 +5076,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -75
       objectReference: {fileID: 0}
+    - target: {fileID: 7049772950346922774, guid: 03018aa58da808b41959a8cf3b263a71,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7067262513464599032, guid: 03018aa58da808b41959a8cf3b263a71,
         type: 3}
       propertyPath: _player
@@ -5220,6 +5225,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7597680758110249550, guid: 03018aa58da808b41959a8cf3b263a71,
+        type: 3}
+      propertyPath: m_Name
+      value: Face Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7852375730549580404, guid: 03018aa58da808b41959a8cf3b263a71,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Model
       objectReference: {fileID: 0}
     - target: {fileID: 7939269845270413538, guid: 03018aa58da808b41959a8cf3b263a71,
         type: 3}
@@ -6637,7 +6652,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8398,7 +8413,6 @@ GameObject:
   - component: {fileID: 1294204583185216174}
   - component: {fileID: 1294204583185216175}
   - component: {fileID: 1294204583185216168}
-  - component: {fileID: 1294204583185216173}
   - component: {fileID: 1294204583185216176}
   - component: {fileID: 1294204583185216177}
   m_Layer: 8
@@ -8407,23 +8421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1294204583185216173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294204583185216171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee1da01a6955fb4fbb6ef43d0c037af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterPanel: {fileID: 0}
-  _nameText: {fileID: 1400328681}
-  _healthSlider: {fileID: 578974123}
-  _healthBar: {fileID: 961362306}
+  m_IsActive: 1
 --- !u!4 &1294204583185216174
 Transform:
   m_ObjectHideFlags: 0
@@ -8595,7 +8593,7 @@ MonoBehaviour:
   _getDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1294204583185216173}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterFeaturesInUI, Assembly-CSharp
         m_MethodName: GetCharacterFeaturesUI
         m_Mode: 1
