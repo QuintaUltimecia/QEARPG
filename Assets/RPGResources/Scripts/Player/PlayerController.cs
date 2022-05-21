@@ -10,22 +10,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
 
     [Header("Links")]
-    [SerializeField] private CinemachineVirtualCamera _camera;
-    [SerializeField] private CinemachineVirtualCamera _miniMapCamera;
+    [SerializeField] private Transform _cameras;
+    [SerializeField] private JoyStick _joyStick;
 
     [Header("Events")]
     [SerializeField] private UnityEvent _moveOn;
     [SerializeField] private UnityEvent _moveOff;
 
     private Rigidbody _rigidbody;
-    private JoyStick _joyStick;
 
-    private void Start()
+    private void OnEnable()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _joyStick = GetComponent<TransferPlayerComponents>().GetCharacterPanelComponent.Controller;
 
-        AddCameras();
+        _cameras.SetParent(GameCache.CamerasPlayers);
+        _cameras.gameObject.name = $"Cameras {gameObject.name}";
 
         _moveOn.AddListener(MoveOn);
         _moveOff.AddListener(MoveOff);
@@ -64,13 +63,5 @@ public class PlayerController : MonoBehaviour
 
     public void MoveOff()
     {
-    }
-
-    private void AddCameras()
-    {
-        _camera = Instantiate(_camera);
-        _camera.Follow = transform;
-        _miniMapCamera = Instantiate(_miniMapCamera);
-        _miniMapCamera.Follow = transform;
     }
 }

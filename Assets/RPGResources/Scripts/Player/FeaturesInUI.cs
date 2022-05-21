@@ -2,29 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterFeaturesInUI : MonoBehaviour
+public class FeaturesInUI : MonoBehaviour
 {
-    private TextMeshProUGUI _nameText;
-    private Slider _healthSlider;
-    private TextMeshProUGUI _healthBar;
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private TextMeshProUGUI _healthBar;
 
     private Character _character;
-    private CharacterPanelComponents _characterPanelComponents;
 
-    private void Start()
+    private void OnEnable()
     {
         _character = GetComponent<IGiveFeaturesInUI>().ReturnCharacter();
-        _characterPanelComponents = GetComponent<TransferPlayerComponents>().GetCharacterPanelComponent;
 
-        GetUI();
         GetCharacterFeaturesUI();
-    }
-
-    private void GetUI()
-    {
-        _nameText = _characterPanelComponents.NameText;
-        _healthBar = _characterPanelComponents.HealthBar;
-        _healthSlider = _characterPanelComponents.HealthSlider;
     }
 
     public void GetCharacterFeaturesUI()

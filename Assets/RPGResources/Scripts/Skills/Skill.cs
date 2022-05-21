@@ -13,16 +13,8 @@ public abstract class Skill : MonoBehaviour, IPointerClickHandler
     [SerializeField] protected string _description;
     [SerializeField] protected LayerMask _layerMask;
 
-    [Header("Links")]
-    [SerializeField] private CharacterPanelComponents _panelComponents;
-
     private bool _isAvailable = true;
     protected Transform _attackPoint; //Get from the player
-
-    private void OnEnable()
-    {
-        _attackPoint = _panelComponents.AttackPoint;
-    }
 
     public virtual IEnumerator AttackDelay()
     {

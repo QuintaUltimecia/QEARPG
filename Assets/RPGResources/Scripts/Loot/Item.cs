@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Slot[] Slot { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        for (int i = 0; i < Slot.Length; i++)
+            if (Slot[i].IsFull is false) transform.SetParent(Slot[i].transform);
+
+        Destroy(this);
     }
 }

@@ -12,7 +12,7 @@ public class Loot : MonoBehaviour
     private GameObject _lootWindowExitButton;
     private GameObject[] _lootSlot = new GameObject[29];
 
-    private Player _player;
+    private InventoryPlayer _inventoryPlayer;
 
     public void Interaction()
     {
@@ -21,7 +21,8 @@ public class Loot : MonoBehaviour
         for (int i = 0; i < randomItemCount; i++)
         {
             _lootSlot[i] = _slots.transform.GetChild(i).gameObject;
-            Instantiate(ItemCache.Items[Random.Range(0, ItemCache.Items.Length)], _lootSlot[i].transform);
+            GameObject newItem = Instantiate(ItemCache.Items[Random.Range(0, ItemCache.Items.Length)], _lootSlot[i].transform);
+            newItem.AddComponent<Item>().Slot = _inventoryPlayer.Slot;
         }
 
         _lootButton.SetActive(false);
@@ -30,9 +31,9 @@ public class Loot : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Player>(out Player player))
+        if (other.TryGetComponent(out InventoryPlayer inventoryPlayer))
         {
-            _player = player;
+            _inventoryPlayer = inventoryPlayer;
             _cachedLootPanel = Instantiate(_lootPanel, GameCache.Canvas.transform);
 
             LootPanel lootPanel = _cachedLootPanel.GetComponent<LootPanel>();
