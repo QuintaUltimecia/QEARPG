@@ -53,5 +53,5 @@ public class Loot : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void OnTriggerExit(Collider other) { if (other.GetComponent<Player>()) Destroy(_cachedLootPanel); }
+    public void OnTriggerExit(Collider other) { if (other.GetComponent<Hero>()) Destroy(_cachedLootPanel); }
 }

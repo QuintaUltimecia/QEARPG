@@ -1,4 +1,4 @@
 public interface ITargetPosition
 {
-    public void Interaction(CharacterController characterController = null);
+    public void Interaction(OldPlayerController characterController = null);
 }

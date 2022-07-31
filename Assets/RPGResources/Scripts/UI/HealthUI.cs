@@ -2,30 +2,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FeaturesInUI : MonoBehaviour
+public class HealthUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private TextMeshProUGUI _healthBar;
 
     private Hero _hero;
 
-    private void Awake()
+    private void OnDisable()
     {
-        _hero = GetComponent<Hero>();
+        _hero.ReturnHealth().UpdateHealthEvent -= delegate ()
+        {
+            UpdateHealthOnUI();
+        };
     }
 
-    private void Start()
+    public void InitHero(Hero value)
     {
-        GetCharacterFeaturesUI();
+        _hero = value;
+
+        _hero.ReturnHealth().UpdateHealthEvent += delegate ()
+        {
+            UpdateHealthOnUI();
+        };
     }
 
-    public void GetCharacterFeaturesUI()
+    public void UpdateHealthOnUI()
     {
         try
         {
-            _nameText.text = _hero.Name;
-
             _healthSlider.minValue = 0;
             _healthSlider.maxValue = _hero.ReturnHealth().MaxHealth;
             _healthSlider.value = _hero.ReturnHealth().HealthAmount;

@@ -8,7 +8,7 @@ public abstract class Skill : MonoBehaviour, IPointerClickHandler
     [SerializeField] protected string _name;
     [SerializeField] protected float _fuel;
     [SerializeField] protected float _coolDown;
-    [SerializeField] protected float _damage;
+    [SerializeField] protected int _damage;
     [SerializeField] protected float _range;
     [SerializeField] protected string _description;
     [SerializeField] protected LayerMask _layerMask;
@@ -32,7 +32,7 @@ public abstract class Skill : MonoBehaviour, IPointerClickHandler
 
         foreach (var collider in targetColliders)
         {
-            collider.GetComponent<IGetDamage>().GetDamage(_damage);
+            collider.GetComponent<ITakeDamage>().ReturnHealth().ApplyDamage(_damage);
         }
     }
 

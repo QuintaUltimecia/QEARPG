@@ -3,17 +3,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using Cinemachine;
 
-public class CharacterController : MonoBehaviour
+public class OldPlayerController : MonoBehaviour
 {
     [Header("Move Parameters")]
     [SerializeField] private float _moveSpeed;
     [SerializeField] private LayerMask _targetLayerMask;
 
     [Header("Links")]
-    [SerializeField] private CinemachineVirtualCamera _camera;
-    [SerializeField] private CinemachineVirtualCamera _miniMapCamera;
     [SerializeField] private GameObject _targetMove;
 
     [Header("Events")]
@@ -26,8 +23,6 @@ public class CharacterController : MonoBehaviour
 
     private void Awake()
     {
-        AddCameras();
-
         _moveOn.AddListener(MoveOn);
         _moveOff.AddListener(MoveOff);
     }
@@ -88,14 +83,6 @@ public class CharacterController : MonoBehaviour
         _targetMove.SetActive(isActive);
         _targetMove.transform.parent = parent;
         _targetMove.transform.position = position;
-    }
-
-    private void AddCameras()
-    {
-        _camera = Instantiate(Resources.Load<GameObject>("Player/Cameras")).transform.GetChild(0).transform.GetComponent<CinemachineVirtualCamera>();
-        _camera.Follow = transform;
-        _miniMapCamera = _camera.transform.parent.GetChild(1).GetComponent<CinemachineVirtualCamera>();
-        _miniMapCamera.Follow = transform;
     }
 
     private bool IsPointerOverUIObject()

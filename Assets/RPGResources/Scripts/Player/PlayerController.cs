@@ -1,67 +1,73 @@
 using UnityEngine;
 using UnityEngine.Events;
-using Cinemachine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [Range(0, 12)]
-    [SerializeField] private float _moveSpeed;
-    [Range(0, 12)]
-    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _moveSpeed = 4f;
+    [SerializeField] private float _rotateSpeed = 4f;
+    [SerializeField] private float _maxOffset = 1f;
 
-    [Header("Links")]
-    [SerializeField] private Transform _cameras;
-    [SerializeField] private JoyStick _joyStick;
+    private CharacterController _characterController;
+    private Vector3 _moveDirection;
+    private Transform _transform;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent _moveOn;
-    [SerializeField] private UnityEvent _moveOff;
+    private Vector3 _inputPosition;
+    private Touch _touch;
 
-    private Rigidbody _rigidbody;
+    public UnityEvent _dragEvent = new UnityEvent();
+    public UnityEvent _endDragEvent = new UnityEvent();
 
-    private void OnEnable()
+    private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-
-        _cameras.SetParent(GameCache.CamerasPlayers);
-        _cameras.gameObject.name = $"Cameras {gameObject.name}";
-
-        _moveOn.AddListener(MoveOn);
-        _moveOff.AddListener(MoveOff);
+        _characterController = GetComponent<CharacterController>();
+        _transform = transform;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        Movement();
-    }
-
-    public void Movement()
-    {
-        if (_joyStick.Position.x != 0 || _joyStick.Position.y != 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            Move();
-            _moveOn?.Invoke();
+            GetTouch();
+
+            _dragEvent?.Invoke();
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+            _moveDirection = new Vector3(mousePosition.x - _inputPosition.x, 0.0f,
+                mousePosition.y - _inputPosition.y);
+
+            float normalizedMagnitude = _moveDirection.magnitude / 100f;
+            normalizedMagnitude = Mathf.Clamp01(normalizedMagnitude);
+
+            _moveDirection = _moveDirection.normalized * normalizedMagnitude;
+
+            _characterController.Move(_moveDirection * _moveSpeed * Time.deltaTime);
+
+            _transform.rotation = Quaternion.Slerp(_transform.rotation, Quaternion.LookRotation(_moveDirection),
+                _rotateSpeed * Time.fixedDeltaTime);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            _endDragEvent?.Invoke();
+        }
+    }
+
+    private void GetTouch()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            for (int i = 0; i < Input.touchCount; ++i)
+                if (Input.GetTouch(i).phase == TouchPhase.Moved)
+                    _touch = Input.GetTouch(i);
+
+            _inputPosition = _touch.position;
         }
         else
-        {
-            _moveOff?.Invoke();
-        }
-    }
-
-    private void Move()
-    {
-        Quaternion direction = Quaternion.LookRotation(_joyStick.Position - _rigidbody.velocity);
-        Quaternion rotation = Quaternion.Lerp(_rigidbody.rotation, direction, _rotationSpeed * Time.fixedDeltaTime);
-        _rigidbody.MoveRotation(rotation);
-        Vector3 position = transform.position + _joyStick.Position * _moveSpeed * Time.fixedDeltaTime;
-        _rigidbody.MovePosition(position);
-    }
-
-    private void MoveOn()
-    {
-    }
-
-    public void MoveOff()
-    {
+            _inputPosition = Input.mousePosition;
     }
 }
+

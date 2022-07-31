@@ -1,64 +1,67 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class JoyStick : MonoBehaviour, IDragHandler, IEndDragHandler
+public class JoyStick : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    private float _maxRadius;
+    [SerializeField] private Image _joystickOutter;
+    [SerializeField] private Image _joystickInner;
 
-    private GameObject _analogStick;
-    private GameObject _borderStick;
+    private GameObject _joystick;
+    private Vector2 _inputVector;
 
-    private Vector3 _inputPosition;
-    private Touch _touch;
+    public bool IsVisible => _joystick is null ? false : _joystick.activeInHierarchy;
 
-    private void Start()
+    public void Start()
     {
-        _analogStick = transform.Find("Stick").gameObject;
-        _borderStick = transform.Find("StickBorder").gameObject;
-
-        _maxRadius = GetComponent<RectTransform>().sizeDelta.x / 2;
+        _joystick = _joystickOutter.gameObject;
+        Hide();
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void StartPosition(Vector2 pos)
     {
-        GetTouch();
-
-        Vector2 offset = _inputPosition - _borderStick.transform.position;
-        _analogStick.transform.position = (Vector2)_borderStick.transform.position + Vector2.ClampMagnitude(offset, _maxRadius);
+        _joystickOutter.rectTransform.position = new Vector2(pos.x, pos.y);
     }
 
-    public void OnEndDrag(PointerEventData eventData) => _analogStick.transform.localPosition = Vector3.zero;
-
-    private void GetTouch()
+    public virtual void OnDrag(PointerEventData eventData)
     {
-        if (Application.platform == RuntimePlatform.Android)
+        Vector2 pos;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickOutter.rectTransform, eventData.position, eventData.pressEventCamera, out pos))
         {
-            for (int i = 0; i < Input.touchCount; ++i)
-                if (Input.GetTouch(i).phase == TouchPhase.Moved)
-                    _touch = Input.GetTouch(i);
+            pos.x = (pos.x / _joystickOutter.rectTransform.sizeDelta.x);
+            pos.y = (pos.y / _joystickOutter.rectTransform.sizeDelta.x);
 
-            _inputPosition = _touch.position;
+            _inputVector = new Vector2(pos.x * 2, pos.y * 2);
+            _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
+            _joystickInner.rectTransform.anchoredPosition = new Vector2(_inputVector.x * (_joystickOutter.rectTransform.sizeDelta.x / 2.75f), _inputVector.y * (_joystickOutter.rectTransform.sizeDelta.y / 2.75f));
         }
-        else
-            _inputPosition = Input.mousePosition;
     }
 
-    private Vector3 PositionConvertor(Vector3 newPosition = new Vector3())
+    public void OnEndDrag(PointerEventData eventData)
     {
-        newPosition = _analogStick.transform.position - _borderStick.transform.position;
-        newPosition = new Vector3(x: newPosition.x, y: 0, z: newPosition.y);
-
-        return newPosition;
+        _inputVector = Vector2.zero;
+        _joystickInner.rectTransform.anchoredPosition = Vector2.zero;
     }
 
-    private Vector3 RotationConvertor(Vector3 newPosition = new Vector3())
+    public void OnPointerDown(PointerEventData eventData)
     {
-        newPosition = _analogStick.transform.position - _borderStick.transform.position;
-        newPosition = new Vector3(x: 0, y: newPosition.y, z: 0);
-
-        return newPosition;
+        Show();
+        StartPosition(new Vector2(eventData.position.x, eventData.position.y));
     }
 
-    public Vector3 Position { get => PositionConvertor().normalized; }
-    public Vector3 Rotation { get => RotationConvertor().normalized; }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Hide();
+    }
+
+    private void Show()
+    {
+        _joystick.SetActive(true);
+    }
+
+    private void Hide()
+    {
+        _joystick.SetActive(false);
+    }
+
 }

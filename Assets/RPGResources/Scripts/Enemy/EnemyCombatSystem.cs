@@ -4,7 +4,7 @@ using System.Collections;
 
 public class EnemyCombatSystem : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private Hero hero;
     [SerializeField] private float aggressionRadius;
     [SerializeField] private float attackRadius;
     [SerializeField] private LayerMask layerMaskAttack;
@@ -31,10 +31,10 @@ public class EnemyCombatSystem : MonoBehaviour
     {
         Collider[] hitColliders = Physics.OverlapSphere(_aggressionPoint.position, aggressionRadius, layerMaskAttack);
 
-        if (player == null) foreach (var hitCollider in hitColliders) player = hitCollider?.GetComponent<Player>();
+        if (hero == null) foreach (var hitCollider in hitColliders) hero = hitCollider?.GetComponent<Hero>();
         else
         {
-            distanceToplayer = Vector3.Distance(transform.position, player.transform.position);
+            distanceToplayer = Vector3.Distance(transform.position, hero.transform.position);
             if (distanceToplayer < aggressionRadius && distanceToplayer > attackRadius)
             {
                 WalkToPlayer();
@@ -48,7 +48,7 @@ public class EnemyCombatSystem : MonoBehaviour
             }
             else
             {
-                player = null;
+                hero = null;
                 OffMove?.Invoke();
             }
         }
@@ -56,7 +56,7 @@ public class EnemyCombatSystem : MonoBehaviour
 
     private void WalkToPlayer()
     {
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = hero.transform.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
 
